@@ -23,3 +23,9 @@ self.addEventListener('fetch', function (event) {
     })
   )
 });
+
+self.addEventListener('beforeinstallprompt', function (event) {
+  event.prompt();
+  
+  
+})
