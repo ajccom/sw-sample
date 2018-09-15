@@ -4,8 +4,8 @@ self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(cacheName).then(function (cache) {
       cache.addAll([
-        '/js/script.js',
-        '/images/hello.png'
+        '/sw-sample/js/script.js',
+        '/sw-sample/images/hello.png'
       ])
     })
   )
