@@ -1,0 +1,15 @@
+<html>
+<body>
+<img src="/images/hello.png" />
+<script src="/js/script.js" async ></script>
+<Script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+    console.log('SW reg success', registration.scope)
+  }).catch(function (err) {
+    console.log('SW reg failed', err)
+  })
+}
+</script>
+</body>
+</html>
