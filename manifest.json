@@ -13,11 +13,11 @@
   "related_applications": [],
   "prefer_related_applications": false,
   "icons": [{
-      "src": "./assets/img/logo/size-32.png",
+      "src": "/sw-sample/assets/img/logo/size-32.png",
       "sizes": "32x32",
       "type": "image/png"
     }, {
-      "src": "./assets/img/logo/size-48.png",
+      "src": "/sw-sample/assets/img/logo/size-48.png",
       "sizes": "48x48",
       "type": "image/png"
     }
