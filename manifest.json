@@ -1,0 +1,25 @@
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "CJ SW Test",
+  "scope": "/sw-sample/",
+  "display": "fullscreen",
+  "start_url": "/",
+  "short_name": "SW Test",
+  "theme_color": "transparent",
+  "description": "Service Worker Test",
+  "orientation": "any",
+  "background_color": "transparent",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [{
+      "src": "./assets/img/logo/size-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }, {
+      "src": "./aassets/img/logo/size-48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
+}
