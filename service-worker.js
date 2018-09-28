@@ -39,22 +39,21 @@ self.addEventListener('activate', function (event) {
 
 self.addEventListener('fetch', function (event) {
   event.respondWith(
-    caches.open(cacheName).match(event.request).then(function (response) {
-      if (response) {
-        console.log('hit:', event.request.url)
-        return response;
-      }
-      console.log('miss:', event.request.url)
-      return fetch(event.request).then((res) => {
-        if (/\.js$/.test(event.request.url)){
-          return caches.open(cacheName).then((cache) => {
-            cache.put(event.request, res.clone());
-            
-            return res;
-          })
-        } else {
-          return res;
+    caches.open(cacheName).then(function (cache) {
+      cache.match(event.request).then(function (response) {
+        if (response) {
+          console.log('hit:', event.request.url)
+          return response;
         }
+        console.log('miss:', event.request.url)
+        return fetch(event.request).then((res) => {
+          if (/\.js$/.test(event.request.url)){
+            cache.put(event.request, res.clone());
+            return res;
+          } else {
+            return res;
+          }
+        })
       })
     })
   )
