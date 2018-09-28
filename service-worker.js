@@ -1,4 +1,5 @@
-var cacheName = 'offline_test';
+var version = 0.1;
+var cacheName = 'offline_test' + version;
 
 self.addEventListener('install', function (event) {
   // 
