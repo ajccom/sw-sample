@@ -22,7 +22,13 @@ self.addEventListener('fetch', function (event) {
         return response;
       }
       console.log('miss:', event.request.url)
-      return fetch(event.request)
+      return fetch(event.request).then((res) => {
+        return caches.open(cacheName).then((cache) => {
+          cache.put(event.request, res);
+          console.log('save fetch data', res);
+          return res.clone()
+        })
+      })
     }).catch(function() {
       console.log('missssss:', event.request.url)
       return fetch(event.request)
