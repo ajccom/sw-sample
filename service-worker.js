@@ -8,31 +8,14 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('activate', function (event) {
-  caches.has(cacheName).then(function(bool) {
-    // true: your cache exists!
-    if (bool) {
-      console.log('cache yes')
-    } else {
-      console.log('cache no')
-      
-      caches.keys().then(function(keyList) {
-        return Promise.all(keyList.map(function(key) {
-          if (cacheWhitelist.indexOf(key) === -1) {
-            return caches.delete(key);
-          }
-        }));
-      })
-    }
-  });
-  
   event.waitUntil(
     caches.keys().then(function(names) {
       console.log('names', names)
       return Promise.all(names.map(function(name) {
-        if (name === cacheName) {
+        if (name !== cacheName) {
           return caches.delete(name)
         }
-      });
+      }));
     })
   );
 });
