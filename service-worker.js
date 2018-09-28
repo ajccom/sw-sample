@@ -3,7 +3,7 @@ var cacheName = 'offline_test' + version;
 
 self.addEventListener('install', function (event) {
   event.waitUntil(
-    self.skipWaiting(); // 无需等待，注册成功就激活
+    self.skipWaiting() // 无需等待，注册成功就激活
   )
 });
 
@@ -22,7 +22,6 @@ self.addEventListener('activate', function (event) {
           }
         });
       })
-      
     }
   });
   
