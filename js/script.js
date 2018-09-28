@@ -1,7 +1,7 @@
 var x = 1;
 
 function a () {
-  return x + x + 3;
+  return x + x + 4;
 }
 
 window.onload = function () {
