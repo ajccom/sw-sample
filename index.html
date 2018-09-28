@@ -6,7 +6,8 @@
 <img src="/sw-sample/images/hello.png" />
 <img src="/sw-sample/images/x.png" />
 <script src="/sw-sample/js/script.js" async ></script>
-<Script>
+<script src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw-sample/service-worker.js').then(function (registration) {
     console.log('SW reg success', registration.scope)
