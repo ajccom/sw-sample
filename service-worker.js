@@ -20,7 +20,7 @@ self.addEventListener('activate', function (event) {
           if (cacheWhitelist.indexOf(key) === -1) {
             return caches.delete(key);
           }
-        });
+        }));
       })
     }
   });
