@@ -25,9 +25,9 @@ self.addEventListener('fetch', function (event) {
       return fetch(event.request).then((res) => {
         console.log('save fetch data 111', res);
         return caches.open(cacheName).then((cache) => {
-          cache.put(event.request, res);
+          cache.put(event.request, res.clone());
           
-          return res.clone()
+          return res;
         })
       })
     })
