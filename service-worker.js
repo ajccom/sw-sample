@@ -2,17 +2,40 @@ var version = 0.2;
 var cacheName = 'offline_test' + version;
 
 self.addEventListener('install', function (event) {
-  // 
-  //event.waitUntil(
-    // self.skipWaiting(); // 无需等待，注册成功就激活
-    /* caches.open(cacheName).then(function (cache) {
-      cache.addAll([
-        '/sw-sample/js/script.js',
-        '/sw-sample/images/hello.png',
-        '//res.wx.qq.com/open/js/jweixin-1.2.0.js'
-      ])
-    }) */
-  //)
+  event.waitUntil(
+    self.skipWaiting(); // 无需等待，注册成功就激活
+  )
+});
+
+self.addEventListener('activate', function (event) {
+  caches.has(cacheName).then(function(bool) {
+    // true: your cache exists!
+    if (bool) {
+      console.log('cache yes')
+    } else {
+      console.log('cache no')
+      
+      caches.keys().then(function(keyList) {
+        return Promise.all(keyList.map(function(key) {
+          if (cacheWhitelist.indexOf(key) === -1) {
+            return caches.delete(key);
+          }
+        });
+      })
+      
+    }
+  });
+  
+  event.waitUntil(
+    caches.keys().then(function(names) {
+      console.log('names', names)
+      return Promise.all(names.map(function(name) {
+        if (name === cacheName) {
+          return caches.delete(name)
+        }
+      });
+    })
+  );
 });
 
 self.addEventListener('fetch', function (event) {
