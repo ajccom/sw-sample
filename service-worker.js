@@ -23,7 +23,7 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.open(cacheName).then(function (cache) {
-      cache.match(event.request).then(function (response) {
+      return cache.match(event.request).then(function (response) {
         if (response) {
           console.log('hit:', event.request.url)
           return response;
