@@ -2,7 +2,7 @@ var cacheName = 'offline_test';
 
 self.addEventListener('install', function (event) {
   // 
-  event.waitUntil(
+  //event.waitUntil(
     // self.skipWaiting(); // 无需等待，注册成功就激活
     /* caches.open(cacheName).then(function (cache) {
       cache.addAll([
@@ -11,7 +11,7 @@ self.addEventListener('install', function (event) {
         '//res.wx.qq.com/open/js/jweixin-1.2.0.js'
       ])
     }) */
-  )
+  //)
 });
 
 self.addEventListener('fetch', function (event) {
