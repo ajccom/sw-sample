@@ -1,7 +1,13 @@
 var version = 0.4;
 var cacheName = 'offline_test' + version;
 
-self.addEventListener('install', function (event) {
+try {
+  self.registration.unregister();
+} catch (e) {
+  console.log('uninstall failed')
+}
+
+/* self.addEventListener('install', function (event) {
   event.waitUntil(
     self.skipWaiting() // 无需等待，注册成功就激活
   )
@@ -42,7 +48,7 @@ self.addEventListener('fetch', function (event) {
       })
     })
   )
-});
+}); */
 
 /*
 // off line cache 
