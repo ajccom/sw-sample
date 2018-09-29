@@ -8,6 +8,7 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('activate', function (event) {
+  console.log('activate')
   event.waitUntil(
     caches.keys().then(function(names) {
       console.log('names', names)
@@ -21,6 +22,7 @@ self.addEventListener('activate', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
+  console.log('fetch')
   event.respondWith(
     caches.open(cacheName).then(function (cache) {
       return cache.match(event.request).then(function (response) {
