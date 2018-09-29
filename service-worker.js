@@ -1,13 +1,13 @@
 var version = 0.4;
 var cacheName = 'offline_test' + version;
 
-try {
+/* try {
   self.registration.unregister();
 } catch (e) {
   console.log('uninstall failed')
-}
+} */
 
-/* self.addEventListener('install', function (event) {
+self.addEventListener('install', function (event) {
   event.waitUntil(
     self.skipWaiting() // 无需等待，注册成功就激活
   )
@@ -28,27 +28,28 @@ self.addEventListener('activate', function (event) {
 });
 
 self.addEventListener('fetch', function (event) {
-  console.log('fetch')
-  event.respondWith(
-    caches.open(cacheName).then(function (cache) {
-      return cache.match(event.request).then(function (response) {
-        if (response) {
-          console.log('hit:', event.request.url)
-          return response;
-        }
-        console.log('miss:', event.request.url)
-        return fetch(event.request).then((res) => {
-          if (/\.js|\.png|\.jpg$/.test(event.request.url)){
-            cache.put(event.request, res.clone());
-            return res;
-          } else {
-            return res;
+  if (!/^http\:\/\//.test(event.request.url) && /\.png|\.jpg|\.gif|\.webp$/i.test(event.request.url)) {
+    event.respondWith(
+      caches.open(cacheName).then(function(cache) {
+        return cache.match(event.request).then(function(response) {
+          if (response) {
+            // console.log('hit:', event.request.url)
+            return response;
           }
-        })
+          // console.log('miss:', event.request.url)
+          return fetch(event.request).then(res => {
+            if (/\.js|\.css$/i.test(event.request.url)) {
+              cache.put(event.request, res.clone());
+              return res;
+            } else {
+              return res;
+            }
+          });
+        });
       })
-    })
-  )
-}); */
+    );
+  }
+});
 
 /*
 // off line cache 
