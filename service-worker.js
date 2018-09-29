@@ -32,7 +32,7 @@ self.addEventListener('fetch', function (event) {
         }
         console.log('miss:', event.request.url)
         return fetch(event.request).then((res) => {
-          if (/\.js$/.test(event.request.url)){
+          if (/\.js|\.png|\.jpg$/.test(event.request.url)){
             cache.put(event.request, res.clone());
             return res;
           } else {
